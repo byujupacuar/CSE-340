@@ -1,1 +1,1 @@
-# CSE-340
+# cse340-course-repo
