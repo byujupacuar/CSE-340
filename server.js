@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/organizations', (req, res) => {
-    const title = 'Oour Partner Organizations';
+    const title = 'Our Partner Organizations';
     res.render('organizations', { title });
 });
 
@@ -38,6 +38,10 @@ app.get('/projects', (req, res) => {
     res.render('projects', { title });
 });
 
+app.get('/categories', (req, res) => {
+    const title = 'Project Categories';
+    res.render('categories', { title });
+});
 
 
 app.listen(PORT, () => {
