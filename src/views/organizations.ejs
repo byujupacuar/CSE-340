@@ -2,22 +2,16 @@
     <main>
         <h1><%= title %></h1>
         <section class="organizations">
+
             <ul class="organization-list">
-                <li class="organization-item">
-                    <img src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo">
-                    <h3>BrightFuture Builders</h3>
-                    <p>info@brightfuture.org</p>
-                </li>
-                <li class="organization-item">
-                    <img src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo">
-                    <h3>GreenHarvest Growers</h3>
-                    <p>contact@greenharvest.org</p>
-                </li>
-                <li class="organization-item">
-                    <img src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo">
-                    <h3>UnityServe Volunteers</h3>
-                    <p> hello@unityserve.org</p>
-                </li>
+                <% organizations.forEach(function(organization) { %>
+                    <li class="organization-item">
+                        <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.logo_filename %> logo">
+                        <h3><%= organization.name %></h3>
+                        <p><%= organization.contact_email %></p>
+                    </li>
+                <% }); %>
+     
             </ul>
     </section>
     </main>

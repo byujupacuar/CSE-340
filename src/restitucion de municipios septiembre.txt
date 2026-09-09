@@ -1,0 +1,8 @@
+UPDATE pcd SET cod_municipio = '071503'  WHERE fid_persona = 9387;
+UPDATE pcd SET cod_municipio = '070101' WHERE fid_persona IN (113352, 20135);
+
+UPDATE log_servicio_sigep SET id_ubigeo = 519 where documento_identidad = '4675523';
+UPDATE log_servicio_sigep SET id_ubigeo = 436 WHERE documento_identidad IN ('7461437', '7992105');
+
+update tmp_corte_anual set codigo_municipal = '71503' where nro_documento = '4675523';
+update tmp_corte_anual set codigo_municipal = '70101' where nro_documento IN ('7461437', '7992105');
