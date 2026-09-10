@@ -5,6 +5,7 @@ import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
 import { getAllProjects } from './src/models/projects.js';
 import { getAllCategories } from './src/models/categories.js';
+
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
 
 const PORT = process.env.PORT || 3000;
