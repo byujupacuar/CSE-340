@@ -4,10 +4,12 @@
 
     <section class="categories">
       <ul class="category-list">
-        <li class="category-item">Environmental</li>
-        <li class="category-item">Educational</li>
-        <li class="category-item">Community Service</li>
-        <li class="category-item">Health and Wellness</li>
+        <%categories.forEach(category => { %>
+          <li class="category-item"><h3><%= category.name %></h3>
+          <p><%= category.description %></p>
+          </li>
+        <% }); %> 
+        
       </ul>
     </section>
   </main>
