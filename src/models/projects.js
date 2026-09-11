@@ -1,7 +1,7 @@
-import db from './db.js'
+import db from "./db.js";
 
-const getAllProjects = async() => {
-    const query = `
+const getAllProjects = async () => {
+  const query = `
       SELECT 
       sp.id,
       sp.title,
@@ -17,9 +17,9 @@ const getAllProjects = async() => {
     ORDER BY sp.project_date ASC;
     `;
 
-    const result = await db.query(query);
+  const result = await db.query(query);
 
-    return result.rows;
-}
+  return result.rows;
+};
 
-export {getAllProjects}
+export { getAllProjects };
