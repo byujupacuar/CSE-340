@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+<main>
+  <section class="project-detail">
+    <% if (projectDetails) { %>
+      <div class="project-header">
+        <h1><%= projectDetails.title %></h1>
+      </div>
+      <div class="project-content">
+        <p><%= projectDetails.description %></p>
+
+        <p>
+          <strong>Date:</strong>
+          <%= new Date(projectDetails.project_date).toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric'
+          }) %>
+        </p>
+
+        <p><strong>Location:</strong> <%= projectDetails.location %></p>
+
+        <p>
+          <strong>Organization:</strong>
+          <a href="/organization/<%= projectDetails.organization_id %>"><%= projectDetails.name %></a>
+        </p>
+      </div>
+    <% } else { %>
+      <p>Project not found.</p>
+    <% } %>
+  </section>
+</main>
+<%- include('partials/footer') %>
