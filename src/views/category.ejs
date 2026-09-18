@@ -1,25 +1,31 @@
 <%- include('partials/header', { title }) %>
 
-<main class="category-details">
+<main>
   <% if (category) { %>
-    <h1><%= category.name %></h1>
-    <p class="category-description"><%= category.description %></p>
+    <section class="category-detail">
+      <div class="category-header">
+        <h1><%= category.name %></h1>
+        <p class="category-description"><%= category.description %></p>
+      </div>
 
-    <h2>Service Projects in this Category</h2>
+      <div class="category-content">
+        <h2>Service Projects in this Category</h2>
 
-    <% if (projects && projects.length > 0) { %>
-      <ul class="project-list">
-        <% projects.forEach((project) => { %>
-          <li class="project-list-item">
-            <a href="/project/<%= project.id %>">
-              <%= project.title %>
-            </a>
-          </li>
-        <% }) %>
-      </ul>
-    <% } else { %>
-      <p>There are currently no service projects in this category.</p>
-    <% } %>
+        <% if (projects && projects.length > 0) { %>
+          <ul class="project-list">
+            <% projects.forEach((project) => { %>
+              <li class="project-item">
+                <a href="/project/<%= project.id %>">
+                  <h3><%= project.title %></h3>
+                </a>
+              </li>
+            <% }) %>
+          </ul>
+        <% } else { %>
+          <p>There are currently no service projects in this category.</p>
+        <% } %>
+      </div>
+    </section>
   <% } else { %>
     <p>Category not found.</p>
   <% } %>

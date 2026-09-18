@@ -318,6 +318,43 @@ main > p {
   color: var(--color-ink-soft);
 }
 
+
+/* -------------------------------------------------------------------------
+   Category Pages
+------------------------------------------------------------------------- */
+
+.category-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--color-surface);
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+.category-header {
+  margin-bottom: var(--space-4);
+}
+
+.category-header h1 {
+  margin-bottom: var(--space-1);
+}
+
+.category-description {
+  max-width: none;
+}
+
+.category-content {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+}
+
+.category-content h2 {
+  margin-bottom: var(--space-2);
+}
+
+
+
 /* -------------------------------------------------------------------------
    Detail Pages
 ------------------------------------------------------------------------- */
