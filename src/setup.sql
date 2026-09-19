@@ -111,3 +111,8 @@ JOIN organizations o ON sp.organization_id = o.id
 JOIN project_categories pc ON sp.id = pc.project_id
 JOIN categories c ON pc.category_id = c.id;
 
+INSERT INTO project_categories (project_id, category_id)
+SELECT id, category_id
+FROM service_projects
+WHERE category_id IS NOT NULL
+ON CONFLICT (project_id, category_id) DO NOTHING;
