@@ -16,9 +16,29 @@
         </p>
       </div>
     </div>
+
     <div class="organization-content">
       <h2>About this Organization</h2>
       <p><%= organizationDetails.description %></p>
+
+      <h2>Service Projects</h2>
+      <% if (projects && projects.length > 0) { %>
+        <ul class="project-list">
+          <% projects.forEach(function(project) { %>
+            <li class="project-item">
+              <a href="/project/<%= project.id %>"><%= project.title %></a>
+              <p>
+                <%= new Date(project.project_date).toLocaleDateString('en-US', {
+                  year: 'numeric', month: 'long', day: 'numeric'
+                }) %>
+                · <%= project.location %>
+              </p>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>This organization has no service projects yet.</p>
+      <% } %>
     </div>
   </section>
 </main>

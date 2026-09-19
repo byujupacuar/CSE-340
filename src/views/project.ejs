@@ -21,6 +21,19 @@
           <strong>Organization:</strong>
           <a href="/organization/<%= projectDetails.organization_id %>"><%= projectDetails.name %></a>
         </p>
+
+        <h2>Categories</h2>
+        <% if (categories && categories.length > 0) { %>
+          <ul class="category-list">
+            <% categories.forEach(function(category) { %>
+              <li class="category-item">
+                <a href="/category/<%= category.id %>"><%= category.name %></a>
+              </li>
+            <% }); %>
+          </ul>
+        <% } else { %>
+          <p>This project has no categories assigned.</p>
+        <% } %>
       </div>
     <% } else { %>
       <p>Project not found.</p>
