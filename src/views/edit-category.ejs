@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+<main>
+  <section class="form-card">
+    <div class="form-header">
+      <h1><%= title %></h1>
+    </div>
+
+    <form action="/edit-category/<%= category.id %>" method="POST" class="organization-form">
+      <div class="form-group">
+        <label for="name">Category Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          maxlength="100"
+          value="<%= category.name %>"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="5"
+          maxlength="500"
+          required
+        ><%= category.description %></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary">Save Changes</button>
+    </form>
+  </section>
+</main>
+<%- include('partials/footer') %>
