@@ -5,7 +5,9 @@
       <div class="project-header">
         <h1><%= projectDetails.title %></h1>
         <p class="page-actions">
-          <a href="/edit-project/<%= projectDetails.id %>" class="btn-secondary">Edit Project</a>
+          <% if (user && user.role_name === 'admin') { %>
+            <a href="/edit-project/<%= projectDetails.id %>" class="btn-secondary">Edit Project</a>
+          <% } %> 
         </p>
       </div>
       <div class="project-content">
@@ -38,7 +40,9 @@
           <p>This project has no categories assigned.</p>
         <% } %>
       </div>
-      <p class="page-actions"><a href="/assign-categories/<%= projectDetails.id %>" class="btn-secondary">Edit Categories</a></p>
+      <% if (user && user.role_name === 'admin') { %>
+        <p class="page-actions"><a href="/assign-categories/<%= projectDetails.id %>" class="btn-secondary">Edit Categories</a></p>
+      <% } %>
     <% } else { %>
       <p>Project not found.</p>
     <% } %>

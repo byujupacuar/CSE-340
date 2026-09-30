@@ -12,6 +12,8 @@
                 <% }); %>
             </ul>
         </section>
-        <p class="page-actions"><a href="/new-project" class="btn-primary">+ Add a New Service Project</a></p>
+        <% if (user && user.role_name === 'admin') { %>
+            <p class="page-actions"><a href="/new-project" class="btn-primary">+ Add a New Service Project</a></p>
+        <% } %>
     </main>
 <%- include('partials/footer') %>

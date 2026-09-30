@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+<main>
+  <section class="form-card">
+    <div class="form-header">
+      <h1><%= title %></h1>
+    </div>
+
+    <form action="/login" method="POST" class="login-form">
+      <div class="form-group">
+        <label for="email">Email (Username)</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          maxlength="255"
+          autocomplete="username"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn-primary">Login</button>
+    </form>
+  </section>
+</main>
+<%- include('partials/footer') %>
