@@ -11,6 +11,13 @@
       <p><strong>Name:</strong> <%= name %></p>
       <p><strong>Email:</strong> <%= email %></p>
     </div>
+    <div>
+      <p><strong>Role:</strong> <%= role_name %></p>
+
+      <% if (role_name === 'admin') { %>
+        <p class="page-actions"><a href="/users" class="btn-secondary">View All Users</a></p>
+      <% } %>
+    </div>
   </section>
 </main>
 

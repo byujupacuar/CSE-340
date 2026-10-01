@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+<main>
+  <section class="project-detail">
+    <div class="project-header">
+      <h1><%= title %></h1>
+    </div>
+
+    <div class="project-content">
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email (Username)</th>
+              <th scope="col">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(user => { %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role_name %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <p class="page-actions"><a href="/dashboard" class="btn-secondary">Back to Dashboard</a></p>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>

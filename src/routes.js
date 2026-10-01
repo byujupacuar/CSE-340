@@ -6,7 +6,7 @@ import { showProjectsPage, showNewProjectForm, processNewProjectForm, projectVal
 import { testErrorPage } from './controllers/errors.js';
 import { showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm} from './controllers/organizations.js';
 import { showCategoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, categoryValidation, showEditCategoryForm, processEditCategoryForm } from './controllers/categories.js';
-import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole } from './controllers/users.js';
+import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers } from './controllers/users.js';
 
 const router = express.Router();
 
@@ -47,6 +47,7 @@ router.post('/new-category', requireRole('admin'), categoryValidation, processNe
 router.get('/edit-category/:id', requireRole('admin'), showEditCategoryForm);
 // Route to handle the edit category form submission
 router.post('/edit-category/:id', requireRole('admin'), categoryValidation, processEditCategoryForm);
+router.get('/users', requireRole('admin'), showAllUsers);
 // error-handling routes
 router.get('/test-error', testErrorPage);
 // User login and logout routes
