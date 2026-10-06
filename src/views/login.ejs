@@ -27,10 +27,23 @@
           autocomplete="current-password"
           required
         />
+          <div class="checkbox-item">
+            <input type="checkbox" id="show-password" />
+            <label for="show-password">Show password</label>
+          </div>
       </div>
 
       <button type="submit" class="btn-primary">Login</button>
     </form>
   </section>
 </main>
+
+<script>
+  const checkbox = document.getElementById('show-password');
+  const input = document.getElementById('password');
+  checkbox.addEventListener('change', () => {
+    input.type = checkbox.checked ? 'text' : 'password';
+  });
+</script>
+
 <%- include('partials/footer') %>

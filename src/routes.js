@@ -2,7 +2,7 @@ import express from 'express';
 
 import { showHomePage } from './controllers/index.js';
 import { showOrganizationsPage } from './controllers/organizations.js';
-import { showProjectsPage, showNewProjectForm, processNewProjectForm, projectValidation, showProjectDetailsPage, showEditProjectForm, processEditProjectForm} from './controllers/projects.js';
+import { showProjectsPage, showNewProjectForm, processNewProjectForm, projectValidation, showProjectDetailsPage, showEditProjectForm, processEditProjectForm, processVolunteerRemoval, processVolunteerSignup} from './controllers/projects.js';
 import { testErrorPage } from './controllers/errors.js';
 import { showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm} from './controllers/organizations.js';
 import { showCategoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, categoryValidation, showEditCategoryForm, processEditCategoryForm } from './controllers/categories.js';
@@ -48,6 +48,8 @@ router.get('/edit-category/:id', requireRole('admin'), showEditCategoryForm);
 // Route to handle the edit category form submission
 router.post('/edit-category/:id', requireRole('admin'), categoryValidation, processEditCategoryForm);
 router.get('/users', requireRole('admin'), showAllUsers);
+router.post('/volunteer/:projectId', requireLogin, processVolunteerSignup);
+router.post('/unvolunteer/:projectId', requireLogin, processVolunteerRemoval);
 // error-handling routes
 router.get('/test-error', testErrorPage);
 // User login and logout routes

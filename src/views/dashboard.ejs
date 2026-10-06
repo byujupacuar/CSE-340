@@ -11,6 +11,29 @@
       <p><strong>Name:</strong> <%= name %></p>
       <p><strong>Email:</strong> <%= email %></p>
     </div>
+    <h2>My Volunteer Projects</h2>
+      <% if (volunteerProjects && volunteerProjects.length > 0) { %>
+        <ul class="project-list">
+          <% volunteerProjects.forEach(function(project) { %>
+            <li class="project-item">
+              <a href="/project/<%= project.id %>"><%= project.title %></a>
+              <p>
+                <%= new Date(project.project_date).toLocaleDateString('en-US', {
+                  year: 'numeric', month: 'long', day: 'numeric'
+                }) %>
+                · <%= project.location %> · <%= project.organization_name %>
+              </p>
+              <form action="/unvolunteer/<%= project.id %>" method="POST" class="inline-form">
+                <input type="hidden" name="returnTo" value="dashboard" />
+                <button type="submit" class="link-button">Remove me as a volunteer</button>
+              </form>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>You haven't signed up to volunteer for any projects yet.</p>
+      <% } %>
+
     <div>
       <p><strong>Role:</strong> <%= role_name %></p>
 

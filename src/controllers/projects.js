@@ -3,6 +3,7 @@ import { getAllProjects, getProjectsByOrganizationId, getProjectDetails, getUpco
 import { getCategoriesByProjectId, getAllCategories } from '../models/categories.js';
 import { getAllOrganizations } from '../models/organizations.js';
 import { body, validationResult } from "express-validator";
+import { addVolunteer, removeVolunteer, isUserVolunteer } from '../models/volunteers.js';
 
 const projectValidation = [
     body('title')
@@ -59,10 +60,16 @@ const showProjectDetailsPage = async (req, res) => {
         return;
     }
 
-     const categories = await getCategoriesByProjectId(projectId);
+    const categories = await getCategoriesByProjectId(projectId);
+    
+    let isVolunteer = false;
+    if (req.session.user) {
+        isVolunteer = await isUserVolunteer(req.session.user.user_id, projectId);
+    }
+    
     const title = 'Project Details';
 
-    res.render('project', { title, projectDetails, categories });
+    res.render('project', { title, projectDetails, categories, isVolunteer });
 };
 
 const showNewProjectForm = async (req, res) => {
@@ -142,6 +149,42 @@ const processEditProjectForm = async (req, res) => {
     }
 };
 
-// Export any controller functions
-export { showProjectsPage, showProjectsByOrganizationPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, showEditProjectForm, processEditProjectForm, projectValidation };
 
+const processVolunteerSignup = async (req, res) => {
+    const projectId = req.params.projectId;
+
+    try {
+        const project = await getProjectDetails(projectId);
+        if (!project) {
+            req.flash('error', 'Project not found.');
+            return res.redirect('/projects');
+        }
+        await addVolunteer(req.session.user.user_id, projectId);
+        req.flash('success', 'You are now volunteering for this project!');
+    } catch (error) {
+        console.error('Error adding volunteer:', error);
+        req.flash('error', 'There was an error signing you up as a volunteer.');
+    }
+    res.redirect(`/project/${projectId}`);
+};
+
+const processVolunteerRemoval = async (req, res) => {
+    const projectId = req.params.projectId;
+
+    try {
+        await removeVolunteer(req.session.user.user_id, projectId);
+        req.flash('success', 'You have been removed as a volunteer.');
+    } catch (error) {
+        console.error('Error removing volunteer:', error);
+        req.flash('error', 'There was an error removing you as a volunteer.');
+    }
+
+    // Return to the dashboard if the request came from there
+    if (req.body.returnTo === 'dashboard') {
+        return res.redirect('/dashboard');
+    }
+    res.redirect(`/project/${projectId}`);
+};
+
+// Export any controller functions
+export { showProjectsPage, showProjectsByOrganizationPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, showEditProjectForm, processEditProjectForm, projectValidation, processVolunteerSignup, processVolunteerRemoval };

@@ -27,6 +27,21 @@
           <a href="/organization/<%= projectDetails.organization_id %>"><%= projectDetails.name %></a>
         </p>
 
+        <% if (isLoggedIn) { %>
+          <div class="volunteer-box">
+            <% if (isVolunteer) { %>
+              <p><strong>You are volunteering for this project.</strong></p>
+              <form action="/unvolunteer/<%= projectDetails.id %>" method="POST" class="inline-form">
+                <button type="submit" class="link-button">Remove me as a volunteer</button>
+              </form>
+            <% } else { %>
+              <form action="/volunteer/<%= projectDetails.id %>" method="POST" class="inline-form">
+                <button type="submit" class="link-button">Volunteer for this project</button>
+              </form>
+            <% } %>
+          </div>
+        <% } %>
+
         <h2>Categories</h2>
         <% if (categories && categories.length > 0) { %>
           <ul class="category-list">
